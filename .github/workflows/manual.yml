@@ -19,4 +19,7 @@ jobs:
 
       # Add your desired steps here for the actions you want to perform after the pull request is merged
       - name: Example Step
-        run: echo "This step runs after the pull request is merged"
+        run: | 
+            echo "This step runs after the pull request is merged"
+            echo "Value of ${GITHUB_WORKSPACE} = "
+            echo ${GITHUB_WORKSPACE}
