@@ -2,13 +2,6 @@ name: 'Publish JAR to Artifactory'
 
 on:
   workflow_dispatch:
-    inputs:
-      user_name:
-        description: 'Your user for the Artifactory Repo'
-        required: true
-      password:
-        description: 'Your password'
-        required: true
   pull_request:
     types:
       - closed
