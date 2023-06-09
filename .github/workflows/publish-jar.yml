@@ -7,13 +7,13 @@ on:
       - closed
 
 jobs:
-  build:
+  build-deploy-plugin:
     runs-on: ubuntu-latest
     env:
       DOTCMS_ARTIFACTORY_USERNAME: ${{ secrets.ARTIFACTORY_USER }}
       DOTCMS_ARTIFACTORY_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
     steps:
-      - name: Check if the pull request was merged
+      - name: Check if the pull request was indeed merged
         run: |
           if [ "${{ github.event.pull_request.merged }}" != "true" ]; then
             echo "Pull request was not merged. Exiting..."
@@ -21,17 +21,9 @@ jobs:
           fi
       - name: Checkout source code
         uses: actions/checkout@v3
-      - name: Run build with Gradle Wrapper
+      - name: Compiling code with Gradle Wrapper
         run: |
           ./gradlew clean jar
-      - name: Upload JAR to Artifactory
+      - name: Uploading JAR to Artifactory
         run: |
           ./gradlew artifactoryPublish
-      - name: Print variables
-        run: | 
-            echo "This step runs after the pull request is merged"
-            echo "Value of GITHUB_WORKSPACE = "
-            echo $GITHUB_WORKSPACE
-            echo "Value of Secrets = "
-            echo $DOTCMS_ARTIFACTORY_USERNAME
-            echo $DOTCMS_ARTIFACTORY_PASSWORD
