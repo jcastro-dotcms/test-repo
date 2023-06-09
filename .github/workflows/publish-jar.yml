@@ -1,6 +1,4 @@
 name: 'Publish JAR to Artifactory'
-description: 'Compiles the Redis Session Manager plugin and uploads the generated JAR to the dotCMS Artifactory Repo'
-author: 'jose.castro@dotcms.com'
 
 on:
   pull_request:
