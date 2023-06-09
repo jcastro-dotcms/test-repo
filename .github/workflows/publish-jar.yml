@@ -3,10 +3,10 @@ name: 'Publish JAR to Artifactory'
 on:
   workflow_dispatch:
     inputs:
-      User Name:
+      user_name:
         description: 'Your user for the Artifactory Repo'
         required: true
-      Password:
+      password:
         description: 'Your password'
         required: true
   pull_request:
@@ -29,7 +29,13 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v3
       - name: Run build with Gradle Wrapper
-        run: ./gradlew clean jar
+        run: |
+          if [[ -v "${{ github.event.inputs.user_name }}" && -v "${{ github.event.inputs.password }}" ]]; then
+            echo "Manually publishing plugin to Artifactory"
+            export DOTCMS_ARTIFACTORY_USERNAME="${{ github.event.inputs.user_name }}"
+            export DOTCMS_ARTIFACTORY_PASSWORD="${{ github.event.inputs.password }}"
+          fi
+          ./gradlew clean jar
       - name: Upload JAR to Artifactory
         run: |
           ./gradlew artifactoryPublish
