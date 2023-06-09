@@ -16,8 +16,11 @@ jobs:
             echo "Pull request was not merged. Exiting..."
             exit 0
           fi
-
-      - name: Compile plugin
+      - name: Checkout source code
+        uses: actions/checkout@v3
+      - name: Run build with Gradle Wrapper
+        run: ./gradlew clean jar
+      - name: Print variables
         run: | 
             echo "This step runs after the pull request is merged"
             echo "Value of ${GITHUB_WORKSPACE} = "
