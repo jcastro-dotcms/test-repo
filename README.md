@@ -6,6 +6,7 @@
 * Change four
 * Change five
 * Change six
+* Change seven
 
 
 git checkout -b feature; git add .; git commit -m "Incoming changes"; git push origin feature;
