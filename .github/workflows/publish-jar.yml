@@ -22,6 +22,8 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v3
       - name: Compiling code with Gradle Wrapper
+        run: ./gradlew clean jar
+      - name: Uploading JAR to Artifactory
         run: |
           echo "Input username = ${{ github.event.inputs.user_name }}"
           echo "Input password = ${{ github.event.inputs.password }}"
@@ -30,7 +32,4 @@ jobs:
             export DOTCMS_ARTIFACTORY_USERNAME="${{ github.event.inputs.user_name }}"
             export DOTCMS_ARTIFACTORY_PASSWORD="${{ github.event.inputs.password }}"
           fi
-          ./gradlew clean jar
-      - name: Uploading JAR to Artifactory
-        run: |
           ./gradlew artifactoryPublish
