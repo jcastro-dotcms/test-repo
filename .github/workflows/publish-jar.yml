@@ -1,4 +1,6 @@
-name: Pull Request Merge Workflow
+name: 'Publish JAR to Artifactory'
+description: 'Compiles the Redis Session Manager plugin and uploads the generated JAR to the dotCMS Artifactory Repo'
+author: 'jose.castro@dotcms.com'
 
 on:
   pull_request:
@@ -17,8 +19,7 @@ jobs:
             exit 0
           fi
 
-      # Add your desired steps here for the actions you want to perform after the pull request is merged
-      - name: Example Step
+      - name: Compile plugin
         run: | 
             echo "This step runs after the pull request is merged"
             echo "Value of ${GITHUB_WORKSPACE} = "
