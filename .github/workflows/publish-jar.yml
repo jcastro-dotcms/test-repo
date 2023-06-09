@@ -17,8 +17,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      REPO_USERNAME: ${{ secrets.ARTIFACTORY_USER }}
-      REPO_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
+      REPO_USERNAME: 'dotcmsdev'
+      REPO_PASSWORD: '_dotcms123$.'
     steps:
       - name: Check if the pull request was merged
         run: |
