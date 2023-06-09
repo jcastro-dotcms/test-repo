@@ -7,8 +7,9 @@
 * Change five
 * Change six
 * Change seven
+* Change eight
 
 
-git checkout -b feature; git add .; git commit -m "Incoming changes"; git push origin feature;
+git status; git checkout -b feature; git add .; git commit -m "Incoming changes"; git push origin feature;
 
 git checkout main; git push origin -d feature; git branch -D feature
