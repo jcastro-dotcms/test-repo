@@ -10,10 +10,15 @@ import java.io.Serializable;
 import java.security.Principal;
 import java.util.HashMap;
 
+/**
+ * Extends the current {@link StandardSession} class with additional functionality that allows it to interact with the
+ * Redis Session Manager. Contains specific attributes and behavior required by the Manager to correctly operate.
+ */
 public class RedisSession extends StandardSession {
 
-
     private static final long serialVersionUID = 1L;
+
+    public static final String DOT_CLUSTER_SESSION = "DOT_CLUSTER_SESSION";
 
     private final Log log = LogFactory.getLog(RedisSession.class);
 
