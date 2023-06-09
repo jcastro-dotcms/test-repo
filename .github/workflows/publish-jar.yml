@@ -34,8 +34,8 @@ jobs:
         run: |
           echo "Input username = ${{ github.event.inputs.user_name }}"
           echo "Input password = ${{ github.event.inputs.password }}"
-          USER_NAME = "${{ github.event.inputs.user_name }}"
-          PASSWORD = "${{ github.event.inputs.password }}"
+          USER_NAME="${{ github.event.inputs.user_name }}"
+          PASSWORD="${{ github.event.inputs.password }}"
           if [[ -v ${USER_NAME} && -v ${PASSWORD} ]]; then
             echo "User '${{ github.event.inputs.user_name }}' is manually publishing this plugin to Artifactory"
             export DOTCMS_ARTIFACTORY_USERNAME="${{ github.event.inputs.user_name }}"
