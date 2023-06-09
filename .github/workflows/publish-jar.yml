@@ -17,8 +17,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      REPO_USERNAME: 'dotcmsdev'
-      REPO_PASSWORD: '_dotcms123$.'
+      DOTCMS_ARTIFACTORY_USERNAME: ${{ secrets.ARTIFACTORY_USER }}
+      DOTCMS_ARTIFACTORY_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
     steps:
       - name: Check if the pull request was merged
         run: |
@@ -39,5 +39,5 @@ jobs:
             echo "Value of GITHUB_WORKSPACE = "
             echo $GITHUB_WORKSPACE
             echo "Value of Secrets = "
-            echo $REPO_USERNAME
-            echo $REPO_PASSWORD
+            echo $DOTCMS_ARTIFACTORY_USERNAME
+            echo $DOTCMS_ARTIFACTORY_PASSWORD
