@@ -19,7 +19,6 @@ jobs:
     env:
       REPO_USERNAME: ${{ secrets.ARTIFACTORY_USER }}
       REPO_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
-      GITHUB_USER: victoralfaro-dotcms
     steps:
       - name: Check if the pull request was merged
         run: |
@@ -33,11 +32,11 @@ jobs:
         run: ./gradlew clean jar
       - name: Upload JAR to Artifactory
         run: |
-          echo "[SIMULATION] Exporting JAR"
+          ./gradlew artifactoryPublish
       - name: Print variables
         run: | 
             echo "This step runs after the pull request is merged"
-            echo "Value of ${GITHUB_WORKSPACE} = "
+            echo "Value of GITHUB_WORKSPACE = "
             echo $GITHUB_WORKSPACE
             echo "Value of Secrets = "
             echo $REPO_USERNAME
